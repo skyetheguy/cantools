@@ -263,7 +263,7 @@ class Parser(textparser.Parser):
             Optional('BU_SG_REL_'),
             'STRING',
             'WORD',
-            choice(DelimitedList('STRING'), OneOrMore('NUMBER')),
+            Optional(choice(DelimitedList('STRING'), OneOrMore('NUMBER'))),
             ';')
 
         attribute_definition_default_rel = Sequence(
@@ -298,7 +298,7 @@ class Parser(textparser.Parser):
             'BO_TX_BU_', 'NUMBER', ':', DelimitedList('WORD'), ';')
 
         signal_group = Sequence(
-            'SIG_GROUP_', 'NUMBER', 'WORD', 'NUMBER', ':', OneOrMore('WORD'), ';')
+            'SIG_GROUP_', 'NUMBER', 'WORD', 'NUMBER', ':', Optional(OneOrMore('WORD')), ';')
 
         return OneOrMoreDict(
             choice(
